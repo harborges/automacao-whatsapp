@@ -1,0 +1,189 @@
+{
+ "cells": [
+  {
+   "cell_type": "markdown",
+   "id": "96bb2299",
+   "metadata": {},
+   "source": [
+    "Automação de envio de mensagens no WhatsApp\n",
+    "WhatsApp automation of sending messages\n",
+    "\n",
+    "    Descrição: Código para extração de dados em uma lista de contatos e envio de mensagens automatizadas.\n",
+    "    Description: Code for extracting data from a contact list and sending automated messages."
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 4,
+   "id": "917d9c14",
+   "metadata": {},
+   "outputs": [],
+   "source": [
+    "#Você precisa instalar a biblioteca Pandas\n",
+    "#You must install Pandas\n",
+    "\n",
+    "#Importando pandas/Importing pandas\n",
+    "\n",
+    "import pandas as pd"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 5,
+   "id": "89a079ff",
+   "metadata": {},
+   "outputs": [
+    {
+     "data": {
+      "text/html": [
+       "<div>\n",
+       "<style scoped>\n",
+       "    .dataframe tbody tr th:only-of-type {\n",
+       "        vertical-align: middle;\n",
+       "    }\n",
+       "\n",
+       "    .dataframe tbody tr th {\n",
+       "        vertical-align: top;\n",
+       "    }\n",
+       "\n",
+       "    .dataframe thead th {\n",
+       "        text-align: right;\n",
+       "    }\n",
+       "</style>\n",
+       "<table border=\"1\" class=\"dataframe\">\n",
+       "  <thead>\n",
+       "    <tr style=\"text-align: right;\">\n",
+       "      <th></th>\n",
+       "      <th>Nome</th>\n",
+       "      <th>Telefone</th>\n",
+       "      <th>Mensagem</th>\n",
+       "    </tr>\n",
+       "  </thead>\n",
+       "  <tbody>\n",
+       "    <tr>\n",
+       "      <th>0</th>\n",
+       "      <td>João da Silva</td>\n",
+       "      <td>551199999999</td>\n",
+       "      <td>CUPOM1</td>\n",
+       "    </tr>\n",
+       "    <tr>\n",
+       "      <th>1</th>\n",
+       "      <td>Maria Sousa</td>\n",
+       "      <td>552199999999</td>\n",
+       "      <td>CUPOM2</td>\n",
+       "    </tr>\n",
+       "  </tbody>\n",
+       "</table>\n",
+       "</div>"
+      ],
+      "text/plain": [
+       "            Nome      Telefone Mensagem\n",
+       "0  João da Silva  551199999999   CUPOM1\n",
+       "1    Maria Sousa  552199999999   CUPOM2"
+      ]
+     },
+     "metadata": {},
+     "output_type": "display_data"
+    }
+   ],
+   "source": [
+    "#Abrindo planilha/Opening spreadsheet\n",
+    "\n",
+    "contatos_df=pd.read_excel('Planilha de Telefones.xlsx')\n",
+    "display(contatos_df)"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 6,
+   "id": "6726a2a2",
+   "metadata": {},
+   "outputs": [
+    {
+     "ename": "WebDriverException",
+     "evalue": "Message: 'chromedriver' executable needs to be in PATH. Please see https://chromedriver.chromium.org/home\n",
+     "output_type": "error",
+     "traceback": [
+      "\u001b[0;31m---------------------------------------------------------------------------\u001b[0m",
+      "\u001b[0;31mFileNotFoundError\u001b[0m                         Traceback (most recent call last)",
+      "\u001b[0;32m~/opt/anaconda3/lib/python3.9/site-packages/selenium/webdriver/common/service.py\u001b[0m in \u001b[0;36mstart\u001b[0;34m(self)\u001b[0m\n\u001b[1;32m     70\u001b[0m             \u001b[0mcmd\u001b[0m\u001b[0;34m.\u001b[0m\u001b[0mextend\u001b[0m\u001b[0;34m(\u001b[0m\u001b[0mself\u001b[0m\u001b[0;34m.\u001b[0m\u001b[0mcommand_line_args\u001b[0m\u001b[0;34m(\u001b[0m\u001b[0;34m)\u001b[0m\u001b[0;34m)\u001b[0m\u001b[0;34m\u001b[0m\u001b[0;34m\u001b[0m\u001b[0m\n\u001b[0;32m---> 71\u001b[0;31m             self.process = subprocess.Popen(cmd, env=self.env,\n\u001b[0m\u001b[1;32m     72\u001b[0m                                             \u001b[0mclose_fds\u001b[0m\u001b[0;34m=\u001b[0m\u001b[0msystem\u001b[0m\u001b[0;34m(\u001b[0m\u001b[0;34m)\u001b[0m \u001b[0;34m!=\u001b[0m \u001b[0;34m'Windows'\u001b[0m\u001b[0;34m,\u001b[0m\u001b[0;34m\u001b[0m\u001b[0;34m\u001b[0m\u001b[0m\n",
+      "\u001b[0;32m~/opt/anaconda3/lib/python3.9/subprocess.py\u001b[0m in \u001b[0;36m__init__\u001b[0;34m(self, args, bufsize, executable, stdin, stdout, stderr, preexec_fn, close_fds, shell, cwd, env, universal_newlines, startupinfo, creationflags, restore_signals, start_new_session, pass_fds, user, group, extra_groups, encoding, errors, text, umask)\u001b[0m\n\u001b[1;32m    950\u001b[0m \u001b[0;34m\u001b[0m\u001b[0m\n\u001b[0;32m--> 951\u001b[0;31m             self._execute_child(args, executable, preexec_fn, close_fds,\n\u001b[0m\u001b[1;32m    952\u001b[0m                                 \u001b[0mpass_fds\u001b[0m\u001b[0;34m,\u001b[0m \u001b[0mcwd\u001b[0m\u001b[0;34m,\u001b[0m \u001b[0menv\u001b[0m\u001b[0;34m,\u001b[0m\u001b[0;34m\u001b[0m\u001b[0;34m\u001b[0m\u001b[0m\n",
+      "\u001b[0;32m~/opt/anaconda3/lib/python3.9/subprocess.py\u001b[0m in \u001b[0;36m_execute_child\u001b[0;34m(self, args, executable, preexec_fn, close_fds, pass_fds, cwd, env, startupinfo, creationflags, shell, p2cread, p2cwrite, c2pread, c2pwrite, errread, errwrite, restore_signals, gid, gids, uid, umask, start_new_session)\u001b[0m\n\u001b[1;32m   1820\u001b[0m                         \u001b[0merr_msg\u001b[0m \u001b[0;34m=\u001b[0m \u001b[0mos\u001b[0m\u001b[0;34m.\u001b[0m\u001b[0mstrerror\u001b[0m\u001b[0;34m(\u001b[0m\u001b[0merrno_num\u001b[0m\u001b[0;34m)\u001b[0m\u001b[0;34m\u001b[0m\u001b[0;34m\u001b[0m\u001b[0m\n\u001b[0;32m-> 1821\u001b[0;31m                     \u001b[0;32mraise\u001b[0m \u001b[0mchild_exception_type\u001b[0m\u001b[0;34m(\u001b[0m\u001b[0merrno_num\u001b[0m\u001b[0;34m,\u001b[0m \u001b[0merr_msg\u001b[0m\u001b[0;34m,\u001b[0m \u001b[0merr_filename\u001b[0m\u001b[0;34m)\u001b[0m\u001b[0;34m\u001b[0m\u001b[0;34m\u001b[0m\u001b[0m\n\u001b[0m\u001b[1;32m   1822\u001b[0m                 \u001b[0;32mraise\u001b[0m \u001b[0mchild_exception_type\u001b[0m\u001b[0;34m(\u001b[0m\u001b[0merr_msg\u001b[0m\u001b[0;34m)\u001b[0m\u001b[0;34m\u001b[0m\u001b[0;34m\u001b[0m\u001b[0m\n",
+      "\u001b[0;31mFileNotFoundError\u001b[0m: [Errno 2] No such file or directory: 'chromedriver'",
+      "\nDuring handling of the above exception, another exception occurred:\n",
+      "\u001b[0;31mWebDriverException\u001b[0m                        Traceback (most recent call last)",
+      "\u001b[0;32m/var/folders/hy/bzvkt_t53k9dpt12gy30k5lw0000gn/T/ipykernel_16806/1908037650.py\u001b[0m in \u001b[0;36m<module>\u001b[0;34m\u001b[0m\n\u001b[1;32m      8\u001b[0m \u001b[0;32mimport\u001b[0m \u001b[0murllib\u001b[0m\u001b[0;34m\u001b[0m\u001b[0;34m\u001b[0m\u001b[0m\n\u001b[1;32m      9\u001b[0m \u001b[0;34m\u001b[0m\u001b[0m\n\u001b[0;32m---> 10\u001b[0;31m \u001b[0mnavegador\u001b[0m \u001b[0;34m=\u001b[0m \u001b[0mwebdriver\u001b[0m\u001b[0;34m.\u001b[0m\u001b[0mChrome\u001b[0m\u001b[0;34m(\u001b[0m\u001b[0;34m)\u001b[0m\u001b[0;34m\u001b[0m\u001b[0;34m\u001b[0m\u001b[0m\n\u001b[0m\u001b[1;32m     11\u001b[0m \u001b[0;34m\u001b[0m\u001b[0m\n\u001b[1;32m     12\u001b[0m \u001b[0mnavegador\u001b[0m\u001b[0;34m.\u001b[0m\u001b[0mget\u001b[0m\u001b[0;34m(\u001b[0m\u001b[0;34m\"https://web.whatsapp.com/\"\u001b[0m\u001b[0;34m)\u001b[0m\u001b[0;34m\u001b[0m\u001b[0;34m\u001b[0m\u001b[0m\n",
+      "\u001b[0;32m~/opt/anaconda3/lib/python3.9/site-packages/selenium/webdriver/chrome/webdriver.py\u001b[0m in \u001b[0;36m__init__\u001b[0;34m(self, executable_path, port, options, service_args, desired_capabilities, service_log_path, chrome_options, service, keep_alive)\u001b[0m\n\u001b[1;32m     68\u001b[0m             \u001b[0mservice\u001b[0m \u001b[0;34m=\u001b[0m \u001b[0mService\u001b[0m\u001b[0;34m(\u001b[0m\u001b[0mexecutable_path\u001b[0m\u001b[0;34m,\u001b[0m \u001b[0mport\u001b[0m\u001b[0;34m,\u001b[0m \u001b[0mservice_args\u001b[0m\u001b[0;34m,\u001b[0m \u001b[0mservice_log_path\u001b[0m\u001b[0;34m)\u001b[0m\u001b[0;34m\u001b[0m\u001b[0;34m\u001b[0m\u001b[0m\n\u001b[1;32m     69\u001b[0m \u001b[0;34m\u001b[0m\u001b[0m\n\u001b[0;32m---> 70\u001b[0;31m         super(WebDriver, self).__init__(DesiredCapabilities.CHROME['browserName'], \"goog\",\n\u001b[0m\u001b[1;32m     71\u001b[0m                                         \u001b[0mport\u001b[0m\u001b[0;34m,\u001b[0m \u001b[0moptions\u001b[0m\u001b[0;34m,\u001b[0m\u001b[0;34m\u001b[0m\u001b[0;34m\u001b[0m\u001b[0m\n\u001b[1;32m     72\u001b[0m                                         \u001b[0mservice_args\u001b[0m\u001b[0;34m,\u001b[0m \u001b[0mdesired_capabilities\u001b[0m\u001b[0;34m,\u001b[0m\u001b[0;34m\u001b[0m\u001b[0;34m\u001b[0m\u001b[0m\n",
+      "\u001b[0;32m~/opt/anaconda3/lib/python3.9/site-packages/selenium/webdriver/chromium/webdriver.py\u001b[0m in \u001b[0;36m__init__\u001b[0;34m(self, browser_name, vendor_prefix, port, options, service_args, desired_capabilities, service_log_path, service, keep_alive)\u001b[0m\n\u001b[1;32m     88\u001b[0m \u001b[0;34m\u001b[0m\u001b[0m\n\u001b[1;32m     89\u001b[0m         \u001b[0mself\u001b[0m\u001b[0;34m.\u001b[0m\u001b[0mservice\u001b[0m \u001b[0;34m=\u001b[0m \u001b[0mservice\u001b[0m\u001b[0;34m\u001b[0m\u001b[0;34m\u001b[0m\u001b[0m\n\u001b[0;32m---> 90\u001b[0;31m         \u001b[0mself\u001b[0m\u001b[0;34m.\u001b[0m\u001b[0mservice\u001b[0m\u001b[0;34m.\u001b[0m\u001b[0mstart\u001b[0m\u001b[0;34m(\u001b[0m\u001b[0;34m)\u001b[0m\u001b[0;34m\u001b[0m\u001b[0;34m\u001b[0m\u001b[0m\n\u001b[0m\u001b[1;32m     91\u001b[0m \u001b[0;34m\u001b[0m\u001b[0m\n\u001b[1;32m     92\u001b[0m         \u001b[0;32mtry\u001b[0m\u001b[0;34m:\u001b[0m\u001b[0;34m\u001b[0m\u001b[0;34m\u001b[0m\u001b[0m\n",
+      "\u001b[0;32m~/opt/anaconda3/lib/python3.9/site-packages/selenium/webdriver/common/service.py\u001b[0m in \u001b[0;36mstart\u001b[0;34m(self)\u001b[0m\n\u001b[1;32m     79\u001b[0m         \u001b[0;32mexcept\u001b[0m \u001b[0mOSError\u001b[0m \u001b[0;32mas\u001b[0m \u001b[0merr\u001b[0m\u001b[0;34m:\u001b[0m\u001b[0;34m\u001b[0m\u001b[0;34m\u001b[0m\u001b[0m\n\u001b[1;32m     80\u001b[0m             \u001b[0;32mif\u001b[0m \u001b[0merr\u001b[0m\u001b[0;34m.\u001b[0m\u001b[0merrno\u001b[0m \u001b[0;34m==\u001b[0m \u001b[0merrno\u001b[0m\u001b[0;34m.\u001b[0m\u001b[0mENOENT\u001b[0m\u001b[0;34m:\u001b[0m\u001b[0;34m\u001b[0m\u001b[0;34m\u001b[0m\u001b[0m\n\u001b[0;32m---> 81\u001b[0;31m                 raise WebDriverException(\n\u001b[0m\u001b[1;32m     82\u001b[0m                     \"'%s' executable needs to be in PATH. %s\" % (\n\u001b[1;32m     83\u001b[0m                         os.path.basename(self.path), self.start_error_message)\n",
+      "\u001b[0;31mWebDriverException\u001b[0m: Message: 'chromedriver' executable needs to be in PATH. Please see https://chromedriver.chromium.org/home\n"
+     ]
+    }
+   ],
+   "source": [
+    "#Controlando o navegador/controlling the navigator\n",
+    "#You must install Selenium and Urllib\n",
+    "\n",
+    "from selenium import webdriver\n",
+    "from selenium.webdriver.common.keys import Keys\n",
+    "from selenium.webdriver.common.by import By\n",
+    "import time\n",
+    "import urllib\n",
+    "\n",
+    "navegador = webdriver.Chrome()\n",
+    "\n",
+    "navegador.get(\"https://web.whatsapp.com/\")\n",
+    "\n",
+    "#Esperando o login via QR code/waiting login by QR code\n",
+    "\n",
+    "while len(navegador.find_elements(By.ID,'side')) < 1:\n",
+    "    time.sleep(1)\n",
+    "    \n",
+    "#Estamos logados no WhatsApp Web/We are logged in\n",
+    "\n",
+    "for i, mensagem in enumerate(contatos_df['Mensagem']):\n",
+    "    pessoa = contatos_df.loc[i, \"Nome\"]\n",
+    "    numero = contatos_df.loc[i,\"Telefone\"]\n",
+    "    texto = urrlib.parse.quote(f\"Oi, {pessoa}! Esse é seu código de cupom {texto}. Obrigado pela preferência\")\n",
+    "    link = f\"https://web.whatsapp.com/send?phone={numero}&text={texto}\"\n",
+    "    navegador.get(link)\n",
+    "    while len(navegador.find_elements(By.ID,'side')) < 1:\n",
+    "            time.sleep(5)\n",
+    "    navegador.find_element(By.XPATH, '//*[@id=\"main\"]/footer/div[1]/div/span[2]/div/div[2]/div[2]/button/span').sendKeys(Keys.ENTER)\n",
+    "    time.sleep(15)\n",
+    "    \n",
+    "navegador.quit()\n",
+    "print('Success!')"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": null,
+   "id": "9af54c13",
+   "metadata": {},
+   "outputs": [],
+   "source": []
+  }
+ ],
+ "metadata": {
+  "kernelspec": {
+   "display_name": "Python 3 (ipykernel)",
+   "language": "python",
+   "name": "python3"
+  },
+  "language_info": {
+   "codemirror_mode": {
+    "name": "ipython",
+    "version": 3
+   },
+   "file_extension": ".py",
+   "mimetype": "text/x-python",
+   "name": "python",
+   "nbconvert_exporter": "python",
+   "pygments_lexer": "ipython3",
+   "version": "3.9.7"
+  }
+ },
+ "nbformat": 4,
+ "nbformat_minor": 5
+}
